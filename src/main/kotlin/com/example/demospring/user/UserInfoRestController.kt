@@ -1,24 +1,25 @@
-package com.example.demospring.web
+package com.example.demospring.user
 
-import com.example.demospring.user.InfoService
-import com.example.demospring.user.UserInfo
 import org.springframework.http.ResponseEntity
+import org.springframework.ui.Model
+import org.springframework.ui.set
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("user")
-class InfoController(
-    private val infoService: InfoService
+class UserInfoRestController(
+    private val userInfoService: UserInfoService
 ) {
 
     @GetMapping(
         "/info",
         produces = ["application/json"],
     )
-    fun getUserInfo(): ResponseEntity<UserInfo> {
-        val userInfo = infoService.getUserInfo()
+    fun getUserInfo(model: Model): ResponseEntity<UserInfo> {
+        val userInfo = userInfoService.getUserInfo()
+        model["title"] = ""
         return ResponseEntity.ok().body(userInfo)
     }
 
