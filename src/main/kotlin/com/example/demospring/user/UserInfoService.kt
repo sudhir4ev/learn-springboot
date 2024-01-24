@@ -1,11 +1,12 @@
 package com.example.demospring.user
+
 import org.springframework.stereotype.Service
 
 @Service
 class UserInfoService {
 
     fun getUserInfo(): UserInfo {
-        return UserInfo()
+        return UserInfo("John", "Doe")
     }
 
 }
